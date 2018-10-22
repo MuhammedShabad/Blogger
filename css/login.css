@@ -1,0 +1,112 @@
+*{
+    margin: 0px;
+}
+.logo{
+    height: 100px;
+    width: 100%;
+}
+
+h2 {
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 1.4em;
+  line-height: 2.8em;
+}
+
+a {
+  text-decoration: none;
+  color: #189;
+    text-decoration: underline;
+}
+
+a:hover {
+  color: #1a8cff;
+}
+
+p.small {
+  font-size:20px;
+  margin-top: 20px;
+}
+.bgimg{
+    background-image: url('../images/signupbg.jpg');
+    width: 100%;
+}
+
+/* Layout */
+.login-box {
+  background-color: #fff;
+  padding-bottom: 40px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 20px;
+    float: right;
+    width: 28%;
+    margin-top: 4%;
+    margin-right: 36%;
+    margin-bottom:3%;
+}
+.login-box .box-header {
+  background-color: #0073e6;
+  margin-top: 0;
+  border-radius: 10px 10px 0 0;
+}
+h1 {
+  font-size: 50px;
+  text-align: center;
+  background-color: lightblue;
+  margin-bottom: 4%;
+  color: brown;
+  height: 70px;
+  font-family: serif;
+}
+.login-box label {
+  font-weight: 700;
+  font-size: .8em;
+  color: #004d99;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  line-height: 2em;
+}
+
+.login-box input {
+  margin-bottom: 20px;
+  padding: 8px;
+  border: 1px solid #b3d9ff;
+  border-radius: 4px;
+  font-size: 1em;
+  color: #3399ff;
+}
+
+.login-box input:focus {
+  outline: none;
+  border-color: #665851;
+  transition: 0.5s;
+  color: #665851;
+}
+
+.login-box button {
+  margin-top: 0px;
+  border: 0;
+  border-radius: 3px;
+  color: #fff;
+  padding: 15px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  background-color: #0073e6;
+  cursor: pointer;
+  outline: none;
+}
+
+.login-box button:hover {
+  opacity: 0.7;
+  transition: 0.5s;
+}
+.verify p{
+  text-align: center;
+  font-size: 20px;
+  color: red;
+}

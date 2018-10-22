@@ -1,0 +1,12 @@
+Create DATABASE blog;
+
+create table blogger(
+	id int(100) not null AUTO_INCREMENT primary key,
+	blog_first varchar(50),
+    blog_last varchar(50),
+    blog_email varchar(50),
+    blog_phone varchar(50),
+   	blog_pwd varchar(50),
+    blog_verified bool
+    blog_hash varchar(32),
+);
