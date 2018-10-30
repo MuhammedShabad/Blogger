@@ -34,6 +34,7 @@
 	    $mail->Body    = $mail_body;
 	    $mail->send();
 	    echo 'Message has been sent';
+	    header("location:login.php?Success");
 
 	} catch (Exception $e) {
 	    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;

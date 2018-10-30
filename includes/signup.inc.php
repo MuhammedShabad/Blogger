@@ -10,6 +10,7 @@
         $email=mysqli_real_escape_string($conn,$_POST['email']);
         $pwd=mysqli_real_escape_string($conn,$_POST['pwd']);
         $ans=mysqli_real_escape_string($conn,$_POST['ans']);
+        $username=mysqli_real_escape_string($conn,$_POST['username']);
         $hash = md5( rand(0,1000) );
         if(preg_match("/[^0-9]/", $phone)){
             header("location: ../logsignup/signup.php?signup=onlynumberallowed&lname=$lname&email=$email&phone=$phone&fname=$fname");
@@ -29,16 +30,15 @@
                 if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                     header("location: ../logsignup/signup.php?signup=email&fname=$fname&lname=$lname&phone=$phone");
                     exit();
-                }
-                else{
-                    // check for blogname
-                    $sql = "SELECT * FROM blogger WHERE blog_email='$email'";
+                }else{
+                    // check for username
+                    $sql = "SELECT * FROM users WHERE user_uid='$uid'";
                     $result = mysqli_query($conn, $sql);
                     $resultcheck = mysqli_num_rows($result);
                     if($resultcheck > 0){
-                       header("location: ../logsignup/signup.php?signup=Emailtaken");
+                       header("location: ../signup.php?signup=usertaken");
                         
-                        exit();
+                        exit(); 
                     }
                         else{
                         $answer=$_SESSION["answer"];
@@ -49,7 +49,7 @@
                         }
                         else{
                         $hashpwd = password_hash($pwd,PASSWORD_DEFAULT);
-                        $sql = "INSERT INTO blogger(blog_first,blog_last,blog_email,blog_phone,blog_pwd,blog_verified,blog_hash) VALUES ('$fname','$lname','$email','$phone','$hashpwd','false','$hash');";
+                        $sql = "INSERT INTO blogger(blog_first,blog_last,blog_username,blog_email,blog_phone,blog_pwd,blog_verified,blog_hash) VALUES ('$fname','$lname','$username','$email','$phone','$hashpwd','false','$hash');";
                         
                         mysqli_query($conn, $sql);
                         $_SESSION['success']=1;

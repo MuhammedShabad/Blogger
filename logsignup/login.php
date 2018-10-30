@@ -1,6 +1,5 @@
 <?php
 	session_start();
-
 ?>
 <html>
 <head>
@@ -20,17 +19,14 @@
 		<div>
 			<h1>BlogOwRite</h1>
 		</div>
-		<div class="verify">
-			<p><?php echo $_SESSION['msg'];?></p>
-		</div>
 		<div class="login-box">
 			<div class="box-header">
 				<h2>Log In</h2>
 			</div>
 			<form action="../includes/login.inc.php" method="POST">
-            <label for="email">Email</label>
+            <label for="email">Username</label>
 			<br>
-			<input type="email" id="email" name="email" required>
+			<input type="text" id="username" name="username" required>
 			<br>
 			<label for="password">Password</label>
 			<br>

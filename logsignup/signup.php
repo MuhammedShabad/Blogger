@@ -75,6 +75,14 @@ session_start();
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Username</label>
+                                    <input class="input--style-4" type="text" name="username" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
                                 <div class="p-t-15">
                                     <button class="btn btn--radius-2 btn--blue" type="submit" name="submit">Submit</button>
                                 </div>

@@ -4,9 +4,49 @@ create table blogger(
 	id int(100) not null AUTO_INCREMENT primary key,
 	blog_first varchar(50),
     blog_last varchar(50),
+    blog_username varchar(30),
     blog_email varchar(50),
     blog_phone varchar(50),
-   	blog_pwd varchar(50),
-    blog_verified bool
-    blog_hash varchar(32),
+   	blog_pwd varchar(100),
+    blog_verified boolean,
+    blog_hash varchar(100),
+    blog_permission boolean
+);
+
+
+create table post(
+	p_id int(100) not null AUTO_INCREMENT primary key,
+	p_username varchar(30),
+	p_title varchar(30),
+	p_content varchar(255),
+	p_image varchar(255)
+);
+
+
+create TABLE likes(
+    p_id int(100) not null AUTO_INCREMENT primary key,
+	p_username varchar(30),
+    p_postid int(100)
+);
+
+CREATE TABLE follow (
+	f_id int(100) AUTO_INCREMENT PRIMARY KEY,
+    f_who varchar(30),
+    f_whom varchar(30)
+);
+
+
+CREATE TABLE comments (
+	c_id int(100) AUTO_INCREMENT PRIMARY KEY,
+    c_username varchar(30),
+    p_id int(100),
+    c_content varchar(1000)
+);
+
+CREATE TABLE notification(
+	n_id int(100) AUTO_INCREMENT PRIMARY KEY,
+	n_author varchar(30),
+    n_commenter varchar(30),
+    n_comment boolean,
+    n_like boolean
 );

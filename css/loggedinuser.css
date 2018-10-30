@@ -1,0 +1,47 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.header{
+	background-color: #e6e9ef;
+}
+.logout{
+	float: right;
+	width: 100px;
+	margin-top: 20px;
+	margin-right: 10px;
+	background-color: gray;
+	color: #fff;
+}
+.liststyle li{
+	list-style: none;
+	text-decoration: none;
+	background-color: #eff5f5;
+	color: black;
+	margin-bottom: 2px;
+	padding: 0;
+	border-radius: 5px;
+	width: 330px;
+	cursor: pointer;
+	font-size: 20px;
+}
+.liststyle{
+	margin: -10px;
+	margin-left: 1px;
+	margin-bottom: 10px;
+}
+.row{
+	margin-right: 0px;
+	margin-bottom: 20px;
+}
+.newPost{
+	cursor: pointer;
+
+}
+.c{
+	margin-right: 0px;
+	margin-left: 0px;
+	text-overflow: clip;
+	white-space: nowrap;
+	overflow: hidden;
+}
