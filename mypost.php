@@ -76,6 +76,9 @@
 			});
 		
 	}
+	function fullpost(i) {
+		window.location.href='fullpost.php?postId='+i;
+	}
 	</script>
 <style type="text/css">
 	.c{
@@ -141,7 +144,7 @@
     			<p class="card-text"><?php echo $result['p_content'];?></p>
   			</div>
   			<div class="card-footer text-dark">
-    			<p class="card-text"><i class="fa fa-thumbs-up count<?php echo $result['p_id'];?>" onclick="like(<?php echo $result['p_id'];?>)"><?php echo $result2['c'];?></i><button onclick="editPost(<?php echo $result['p_id'];?>)" class="btn btn-primary edit" style="margin-left: 20px;">Edit</button><a href='#' style="float: right;">Read More</a></p>
+    			<p class="card-text"><i class="fa fa-thumbs-up count<?php echo $result['p_id'];?>" onclick="like(<?php echo $result['p_id'];?>)"><?php echo $result2['c'];?></i><button onclick="editPost(<?php echo $result['p_id'];?>)" class="btn btn-primary edit" style="margin-left: 20px;">Edit</button><button style="float: right;" class="btn btn-info" onclick="fullpost(<?php echo $result['p_id'];?>)">Read More</button></p>
 			</div>
 		</div>
 	<?php

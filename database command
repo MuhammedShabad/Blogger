@@ -18,7 +18,7 @@ create table post(
 	p_id int(100) not null AUTO_INCREMENT primary key,
 	p_username varchar(30),
 	p_title varchar(30),
-	p_content varchar(255),
+	p_content varchar(10000),
 	p_image varchar(255)
 );
 

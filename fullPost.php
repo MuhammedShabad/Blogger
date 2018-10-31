@@ -1,12 +1,10 @@
 <?php
 	session_start();
 	include 'includes/dbh.inc.php';
-	$fname = $_SESSION['b_first'];
-	$lname = $_SESSION['b_last'];
 	$username = $_SESSION['b_username'];
-	$email = $_SESSION['b_email'];
-	$phone = $_SESSION['b_phone'];
-	include 'includes/dbh.inc.php';
+	$id=$_GET['postId'];
+	$sql = "SELECT * from post where p_id='$id'";
+	$resultPost=mysqli_query($conn,$sql);
 	$sqlfollowing = "SELECT * from follow where f_who='$username'";
 	$result = mysqli_query($conn,$sqlfollowing);
 	$following = mysqli_num_rows($result);
@@ -131,32 +129,44 @@
 		</div>
 	</div>
 	<div class="form"></div>
-	<div class="row card-style">
+	<div class="card-style">
 	<?php 
-		$displaySql = "SELECT * from post";
-		$res = mysqli_query($conn,$displaySql);
-		$row = mysqli_num_rows($res);
-		$i=0;
-		while($result = mysqli_fetch_array($res)){
+		if(mysqli_num_rows($resultPost)>0){
+			$result = mysqli_fetch_array($resultPost);
 			$postid = $result['p_id'];
 			$sqldis = "SELECT count(p_postid) c from likes where p_postid='$postid'";
 			$res1 = mysqli_query($conn,$sqldis);
 			$result2 = mysqli_fetch_array($res1);
-	?>
-		<div class="card text-dark col-sm-6 col-xs-12 col-md-3">
-			<?php
-			if($result['p_image']!=''){ ?>
-  			<img class="card-img" src="<?php echo $result['p_image'];?>" alt="Card image" height=180px>
-  			<?php
-  				}
-  			?>
-  			<div class="card-body c">
-    			<h4 class="card-title"><?php echo $result['p_title'];?></h4>
-    			<p class="card-text"><?php echo $result['p_content'];?></p>
-  			</div>
-  			<div class="card-footer text-dark">
-    			<p class="card-text"><i class="fa fa-thumbs-up count<?php echo $result['p_id'];?>" onclick="like(<?php echo $result['p_id'];?>)" style="margin-right: 10px; "><?php echo $result2['c'];?></i><button class="btn-sm btn-primary"  data-toggle="modal" data-target="#myModal<?php echo $result['p_id'];?>">Comment</button><button style="float: right;" class="btn btn-info" onclick="fullpost(<?php echo $result['p_id'];?>)">Read More</button></p>
-			</div>
+			$title = $result['p_title'];
+			$content = $result['p_content'];
+			$image = $result['p_image']; 
+			$sqlComment = "SELECT * FROM comments where p_id='$postid'";
+			$commentResult=mysqli_query($conn,$sqlComment);
+	?>	
+		<div>
+			<h2 style="text-align: center; color: blue;"><?php echo $title;?></h2>
+			<p><img src="<?php echo $image;?>" style="float: right; width: 250px; margin: 5px;"><?php echo $content;?></p>
+			<button class="btn btn-primary" style="margin-left: 30px;" data-toggle="modal" data-target="#myModal<?php echo $postid;?>">Comment</button>
+		</div>
+		<div class="listOFComment" style="clear: both; margin-left:20px;">
+			<h2 style="color: green; text-align: center;" >Comments</h2>
+			<?php 
+				if(mysqli_num_rows($commentResult)>0){
+
+					while($row=mysqli_fetch_array($commentResult)){
+			?>	
+				
+				<div>
+					<h3 style="color: blue;"><?php echo $row['c_username'];?></h3>
+					<p style="margin-left: 40px;"><?php echo $row['c_content'];?></p>
+				</div>
+			<?php			
+					}
+				}
+			?>
+			
+		</div>
+		<div>
 			<form method="post" action="comment.php">
 				<div class="modal fade" id="myModal<?php echo $result['p_id'];?>" role="dialog">
 				    <div class="modal-dialog">
