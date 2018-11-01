@@ -4,7 +4,7 @@
 	$username='';
 	include 'includes/dbh.inc.php';
 	if(isset($_POST["searched"])){
-		$username = $_SESSION['b_username'];
+		$username = $_POST['viewer'];
 		$usertosearch = $_POST['usernameofsearch'];
 		$sql = "SELECT * from blogger where blog_username='$usertosearch'";
 		$result = mysqli_query($conn,$sql);
@@ -38,26 +38,31 @@
 	<link rel="stylesheet" type="text/css" href="css/loggedinuser.css">
 	<script type="text/javascript">
 		var s,follows=0;
+		var user = "<?php echo $username;?>";
 		function follow(namei) {
-			if($(".followbtn").text()=="Following"){
-				follows=1;
-				namei=namei+'1';
-			}
-			else{
-				follows=0;
-				namei=namei+'0';
-			}
-			$.ajax({
-				url:"follow/follow.php",
-				method:"POST",
-				data:{whom:namei},
-				success:function(data){
-					if(follows==0)
-						$(".followbtn").html("Following");
-					else
-						$(".followbtn").html("Follow");
+			if(user!='guest'){
+				if($(".followbtn").text()=="Following"){
+					follows=1;
+					namei=namei+'1';
 				}
-			});
+				else{
+					follows=0;
+					namei=namei+'0';
+				}
+				$.ajax({
+					url:"follow/follow.php",
+					method:"POST",
+					data:{whom:namei},
+					success:function(data){
+						if(follows==0)
+							$(".followbtn").html("Following");
+						else
+							$(".followbtn").html("Follow");
+					}
+				});
+			}else{
+				alert("Please Login to Follow");
+			}
 		}
 	</script>
 </head>
