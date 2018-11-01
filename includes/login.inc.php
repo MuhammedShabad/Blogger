@@ -19,20 +19,20 @@ if(isset($_POST['submit']))
         }else{
             if($row = mysqli_fetch_assoc($result)){
                 echo password_hash($pwd,PASSWORD_DEFAULT);
-                echo $row['blog_pwd'];
                 $hashedpwdCheck = password_verify($pwd,$row['blog_pwd']);
                 if($hashedpwdCheck == false){
-                    //header("Location: ../logsignup/login.php?login=InvalidPassword");
+                    header("Location: ../logsignup/login.php?login=InvalidPassword");
                     exit(); 
                 }
                 else if($hashedpwdCheck == true){
                     $sqlactivate = "SELECT * FROM blogger WHERE blog_username='$username'";
+
                     $result = mysqli_query($conn,$sqlactivate);
                     if($row = mysqli_fetch_assoc($result)){
                             if($row['blog_verified'] != 1){
                                 $_SESSION['msg'] = 'You have not yet verified your username.';
                                 header("location: ../logsignup/login.php?sent");
-                            }else{
+                            }else if($username != "admin"){
                                 $_SESSION['b_username'] = $row['blog_username'];
                                 $_SESSION['b_first'] = $row['blog_first'];
                                 $_SESSION['b_last'] = $row['blog_last'];
@@ -40,6 +40,13 @@ if(isset($_POST['submit']))
                                 $_SESSION['b_email'] = $row['blog_email'];
                                 header("Location: ../loggedInUser.php?login=success");
                                 exit();
+                            }else{
+                                $_SESSION['b_username'] = $row['blog_username'];
+                                $_SESSION['b_first'] = $row['blog_first'];
+                                $_SESSION['b_last'] = $row['blog_last'];
+                                $_SESSION['b_phone'] = $row['blog_phone'];
+                                $_SESSION['b_email'] = $row['blog_email'];
+                                header("Location: ../admin/index.php?login=success");
                             }
                     }
                 }

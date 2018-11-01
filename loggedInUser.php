@@ -13,6 +13,13 @@
 	$sqlfollower = "SELECT * from follow where f_whom='$username'";
 	$result = mysqli_query($conn,$sqlfollower);
 	$follower = mysqli_num_rows($result);
+	$permission = "SELECT * from blogger where blog_username='$username'";
+	$checkPermission=mysqli_query($conn,$permission);
+	$row = mysqli_fetch_array($checkPermission);
+	$per=0;
+	if($row['blog_permission']==1){
+		$per=1;
+	}
 ?>
 <html>
 <head>
@@ -58,6 +65,18 @@
 		window.location.href='mypost.php';
 	}
 	function newPost(){
+		var canAdd=true;
+		<?php 
+			if($per!=1){
+		?>
+			canAdd = "<?php echo false;?>";
+			<?php 
+				}
+			?>
+		if(canAdd == false){
+			alert("You do not have permission to add post");
+			return ;
+		}
 		$(".card-style").html('');	
 		var formNew = "<h2 class='offset-4' style='margin-bottom:30px;'>Create New Post</h2><form method='post' action='newpost.php' enctype='multipart/form-data'><div class='form-group'><div class='row'><div class='col-sm-2 offset-2'><label for='post-title' class='control-label'>Title</label></div><div class='col-sm-4'><input type='text' class='form-control' name='title' id='post-title' placeholder='Title'></div></div><div class='row'><div class='col-sm-2 offset-2'><label for='post-content' class='control-label'>Content</label></div><div class='col-sm-4'><textarea class='form-control' name='content' rows='7'></textarea></div></div><div class='row'><div class='col-sm-2 offset-2'><label for='postimage' class='control-label'>Image</label></div><div class='col-sm-4'><input type='file' name='image' id='postimage'></div></div><button class='btn btn-success offset-5' name='addpost'>Submit</button></div></form";
 		$(".form").html(formNew);
