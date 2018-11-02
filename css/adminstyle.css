@@ -1,0 +1,45 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.header{
+	background-color: #e6e9ef;
+}
+.logout{
+	float: right;
+	width: 100px;
+	margin-top: 20px;
+	margin-right: 10px;
+	background-color: gray;
+	color: #fff;
+}
+ul{
+	margin: 0px;
+	padding: 0;
+}
+li{
+	float: left;
+	list-style: none;
+	display: block;
+	margin-right:  10px;
+	margin-left: 5px;
+	margin-bottom: 20px;
+}
+button{
+	border: none;
+	cursor: pointer;
+}
+.c{
+	margin-right: 0px;
+	margin-left: 0px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	height: 100px;
+}
+.navigation{
+	margin-bottom: 80px;
+}
+.row{
+	margin:0px;
+}
