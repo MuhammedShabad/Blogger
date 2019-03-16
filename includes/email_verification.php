@@ -27,7 +27,7 @@
 	    $mail->Password = '';                           // SMTP password
 	    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
 	    $mail->Port = 465;                                    // TCP port to connect to
-	    $mail->setFrom('rishabhrathi75@gmail.com');
+	    $mail->setFrom('');
 	    $mail->addAddress($email);
 	    $mail->isHTML(true);                                  // Set email format to HTML
 	    $mail->Subject = 'Email Verification';
